@@ -5,10 +5,10 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <title>Sadhbhavana</title>
+          <title>Netaji</title>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" href="/favicon.ico" />
-          <meta name="description" content="dcc thrissur" />
+          <meta name="description" content="Netaji" />
           
         </Head>
 
