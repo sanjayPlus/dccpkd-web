@@ -52,7 +52,7 @@ function Home() {
           // Check if messaging is not null
           const newToken = await getToken(messaging, {
             vapidKey:
-              "BEVCM2zy9OhN7Udc_U0X1jubP85nXoB__OdXxJGD73Fw79vHdslLEvlyNfr3Q1UwGO9At4CIEDywICPVl8yDaQE",
+              "BHBBeczbWiv_LjEVTp7qtwxQKAidClEceQZsTWA9uCaUPHmdKpISjMOqHKnViyd0cLfondvszLcgxrhP006uyLs",
           });
           console.log(newToken);
           setToken(newToken);
