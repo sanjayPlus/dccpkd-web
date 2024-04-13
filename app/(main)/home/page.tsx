@@ -421,14 +421,14 @@ function Home() {
           <div className="w-full p-2 rounded-2xl mb-24">
             <AdsCarousel carousel={ads} />
           </div>
-          <div className="banner-image w-full h-full flex justify-center items-center px-2 rounded-lg mt-3 mb-20 cursor-pointer">
+          {/* <div className="banner-image w-full h-full flex justify-center items-center px-2 rounded-lg mt-3 mb-20 cursor-pointer">
             <img
               onClick={() => router.push("/developers")}
               src="/images/dev-banner.jpg"
               alt=""
               className="rounder-lg"
             />
-          </div>
+          </div> */}
         </div>
         <BottomNav activeItem="home" />
       </MobileContainer>

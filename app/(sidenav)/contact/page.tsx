@@ -56,7 +56,7 @@ function Contact() {
                                             <IoIosMail size={21} />
                                         </div>
                                         <div className="flex flex-col justify-center items-start w-64  ">
-                                            <p className="text-xs font-semibold p-5 "> dcckasaragodhk@gmail.com</p>
+                                            <p className="text-xs font-semibold p-5 ">dccpalakkad@dmckpcc.in</p>
                                         </div>
                                     </div>
                                 </div>
