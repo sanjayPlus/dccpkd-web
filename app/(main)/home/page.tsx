@@ -42,6 +42,14 @@ function Home() {
   const router = useRouter();
   const [ads, setAds] = useState([]);
   const [token, setToken] = useState<string | null>(null);
+  const [socialMediaForm, setSocialMediaForm] = useState({
+    facebook: "",
+    instagram: "",
+    whatsapp: "",
+    phone: "",
+    youtube: "",
+    contact:"",
+  });
 
   const requestPermission = async () => {
     try {
@@ -52,7 +60,7 @@ function Home() {
           // Check if messaging is not null
           const newToken = await getToken(messaging, {
             vapidKey:
-              "BHBBeczbWiv_LjEVTp7qtwxQKAidClEceQZsTWA9uCaUPHmdKpISjMOqHKnViyd0cLfondvszLcgxrhP006uyLs",
+              "BEVCM2zy9OhN7Udc_U0X1jubP85nXoB__OdXxJGD73Fw79vHdslLEvlyNfr3Q1UwGO9At4CIEDywICPVl8yDaQE",
           });
           console.log(newToken);
           setToken(newToken);
@@ -134,6 +142,17 @@ function Home() {
         localStorage.removeItem("token");
       });
   }, []);
+  useEffect(() => {
+    axios
+      .get(SERVER_URL + "/admin/social-media-form")
+      .then((response) => {
+        setSocialMediaForm(response.data[0]);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   return (
     <>
       <MobileContainer>
@@ -237,14 +256,11 @@ function Home() {
               <div>
                 <div
                   className="textThree flex items-center justify-center w-12 h-12 rounded-full bg-[#082282]"
-                  onClick={() =>
-                    window.open(
-"https://timesofindia.indiatimes.com/city/thiruvananthapuram/chandy-demands-organizational-poll/articleshow/55916341.cms"                      )
-                  }
+                  onClick={() => router.push("/representatives")}
                 >
                   <MdGroups className="icon" />
                   <span className="textThree-span">
-                    peoples Representatives
+                    Peoples Representatives
                   </span>
                 </div>
               </div>
@@ -266,9 +282,7 @@ function Home() {
               <div className="article p-3 ">
                 <div
                   className="textFive flex items-center justify-center w-12 h-12 rounded-full  bg-[#082282]"
-                  onClick={() =>
-                    window.open("https://www.thehindu.com/news/cities/Thiruvananthapuram/dcc-stages-protest-march-in-thiruvananthapuram/article65524017.ece")
-                  }
+                  onClick={() => router.push("/article")}
                 >
                   <MdOutlineArticle className="icon" />
                   <span className="textFive-span">Articles</span>
@@ -290,9 +304,7 @@ function Home() {
               <div>
                 <div
                   className="textSeven flex items-center justify-center w-12 h-12 rounded-full bg-[#082282]"
-                  onClick={() =>
-                    router.push("/music")
-                  }
+                  onClick={() => router.push("/music")}
                 >
                   <IoMdMusicalNote className="icon" />
                   <span className="textSeven-span">Music</span>
@@ -314,60 +326,73 @@ function Home() {
 
           {/* new components end */}
 
-          <div className="social-link-container  flex justify-center w-full ">
-            <div className="w-80 px-4 p-4 flex justify-between items-center rounded-xl mb-2  bg-white">
-              <div>
-              <Link
-                  href="https://www.facebook.com/dccthiruvananthapuram/"
-                  target="_blank"
-                >
-                  <FaFacebook
-                    className="fill-blue-600 gap-y-3 mt-1 mb-1 "
-                    size={35}
-                  />
-                </Link>
-              </div>
-              {/* <div>
-                <Link
-                  href="https://www.instagram.com/dccmalappuramofficial/"
-                  target="_blank"
-                >
-                  <img
-                    src="/icons/instagram.png"
-                    alt=""
-                    className="w-14 p-1 mt-1"
-                  />
-                </Link>
-              </div> */}
-              {/* <div>
-                <Link
-                  href="https://www.youtube.com/channel/UCepmw1tTeZytjsVlHUF2FfQ"
-                  target="_blank"
-                >
-                  <img
-                    src="/icons/youtube.png"
-                    alt=""
-                    className="w-14 p-1 mt-1 mb-1"
-                  />
-                </Link>
-              </div> */}
-              <div>
-                <Link href="https://wa.me/918281749650" target="_blank">
-                  <IoLogoWhatsapp
-                    className="fill-green-500 gap-y-3 mb-1"
-                    size={34}
-                  />
-                </Link>
-              </div>
-              <div>
-                <Link href="tel:+918281749650" target="_blank">
-                  <img
-                    src="/icons/customer-care.png"
-                    alt=""
-                    className="w-10 p-2 mr-1 ml-1"
-                  />
-                </Link>
-              </div>
+          <div className="social-link-container flex justify-center w-full ">
+            <div className="w-80 px-4  flex justify-between items-center rounded-xl mb-2  bg-white">
+              {socialMediaForm?.facebook && (
+                <>
+                  <div>
+                    <Link href={socialMediaForm?.facebook} target="_blank">
+                      <FaFacebook
+                        className="fill-blue-600 gap-y-3 mt-1 mb-1 "
+                        size={35}
+                      />
+                    </Link>
+                  </div>
+                </>
+              )}
+              {socialMediaForm?.instagram && (
+                <>
+                  <div>
+                    <Link href={socialMediaForm?.instagram} target="_blank">
+                      <img
+                        src="/icons/instagram.png"
+                        alt=""
+                        className="w-14 p-1 mt-1"
+                      />
+                    </Link>
+                  </div>
+                </>
+              )}
+              {socialMediaForm?.youtube && (
+                <>
+                  <div>
+                    <Link href={socialMediaForm?.youtube} target="_blank">
+                      <img
+                        src="/icons/youtube.png"
+                        alt=""
+                        className="w-14 p-1 mt-1"
+                      />
+                    </Link>
+                  </div>
+                </>
+              )}
+
+              {socialMediaForm?.whatsapp && (
+                <>
+                  <div>
+                  
+                    <p onClick={()=>window.open(`${socialMediaForm?.whatsapp}`, '_blank ','noopener,noreferrer')}  >
+                      <IoLogoWhatsapp
+                        className="fill-green-500 gap-y-3 mb-1"
+                        size={34}
+                      />
+                    </p>
+                  </div>
+                </>
+              )}
+              {socialMediaForm?.contact && (
+                <>
+                  <div>
+                    <Link href={`tel:${socialMediaForm?.contact}`} target="_blank">
+                      <img
+                        src="/icons/customer-care.png"
+                        alt=""
+                        className="w-10 p-2 mr-1 ml-1"
+                      />
+                    </Link>
+                  </div>
+                </>
+              )}
             </div>
           </div>
 
@@ -387,14 +412,12 @@ function Home() {
           >
             <img src="/images/rmclist.jpg" alt="" />
           </div>
-
           <div
             onClick={() => router.push("/whatsapp-link")}
             className="social-link-container w-full px-4 my-2  "
           >
-            <img className="w-full"  src="/images/volunteer.png" alt="" />
+            <img className="w-full" src="/images/volunteer.png" alt="" />
           </div>
-
           <div className="polling-container-2 w-full flex flex-col justify-center items-center my-7">
             <h2
               className="text-lg font-bold m-0"
