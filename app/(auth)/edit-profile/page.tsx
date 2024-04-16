@@ -80,7 +80,7 @@ function EditProfile() {
 
     }, []);
     useEffect(() => {
-        handleDistrictChange({ target: { value: "Thrissur" } })
+        handleDistrictChange({ target: { value: "Palakkad" } })
     },[])
     const handleDateChange = (date: any) => {
         setSelectedDate(date);

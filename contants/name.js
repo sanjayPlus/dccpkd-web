@@ -1,1 +1,1 @@
-export default "LEADER";
+export default "NETAJI";
