@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import image1 from './assets/navasankalp.png'
 import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+import Card from 'react-bootstrap/Card'
 import './respresentatives.css'
 import SERVER_URL from '@/config/SERVER_URL';
 
